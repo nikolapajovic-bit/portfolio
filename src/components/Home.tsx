@@ -27,9 +27,9 @@ const projects = [
   {
     num: '04',
     name: 'MovieVerse',
-    desc: 'Cinema ticketing web application that provides users with browsing and purchasing their favorite movie tickets.',
+    desc: 'Cinema ticketing web application for browsing and purchasing movie tickets.',
     stack: ['Angular', 'Angular Material', 'Axios'],
-    link: 'https://github.com/nikolapajovic-bit/MovieVerse'
+    link: 'https://github.com/nikolapajovic-bit/MovieVerse',
   }
 ]
 
@@ -67,19 +67,19 @@ export default function HomeClient() {
       {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
         <div className="mb-6">
-          <span className="font-syne-mono text-xs uppercase tracking-widest2 px-3 py-2 border rounded-sm inline-block" style={{ borderColor: 'var(--paper-subtle)', color: 'var(--muted)' }}>
+          <span className="font-syne-mono text-xs uppercase tracking-widest2 px-3 py-2 border rounded-sm inline-block"
+            style={{ borderColor: 'var(--paper-subtle)', color: 'var(--muted)' }}>
             Software Engineer
           </span>
+
           <span className="ml-4 font-syne-mono text-xs uppercase tracking-widest text-accent inline-flex items-center gap-2">
-            <span className="status-dot w-2 h-2 rounded-full"></span>
+            <span className="status-dot w-2 h-2 rounded-full animate-pulse"></span>
             Open to work
           </span>
         </div>
 
-        <h1 className="font-syne font-extrabold text-[clamp(5rem,13vw,10rem)] leading-[0.9] relative">
-          <span className="block animate-gradient-x">
-            NIKOLA
-          </span>
+        <h1 className="font-syne font-extrabold text-[clamp(5rem,13vw,10rem)] leading-[0.9]">
+          <span className="block animate-gradient-x">NIKOLA</span>
           <span className="block text-outline">PAJOVIĆ</span>
         </h1>
 
@@ -89,7 +89,7 @@ export default function HomeClient() {
 
         <a
           href="mailto:nikpajovic@gmail.com"
-          className="btn-primary mt-6 inline-block"
+          className="btn-primary mt-6 inline-block transition-transform duration-300 hover:scale-105"
         >
           Get in touch ↗
         </a>
@@ -97,10 +97,13 @@ export default function HomeClient() {
 
       {/* TECH TICKER */}
       <div className="overflow-hidden py-3 border-t border-b border-border">
-        <div className="ticker-inner whitespace-nowrap flex gap-10">
+        <div className="ticker-inner whitespace-nowrap flex gap-10 animate-[marquee_18s_linear_infinite]">
           {[...tickerItems, ...tickerItems].map((item, i) => (
-            <span key={i} className="font-syne-mono text-xs uppercase tracking-widest4 px-6 inline-flex items-center after:content-['✦'] after:text-[8px] text-paper-dim">
-              {item}
+            <span
+              key={i}
+              className="font-syne-mono text-xs uppercase tracking-widest4 px-6 inline-flex items-center text-paper-dim"
+            >
+              {item} <span className="ml-4 text-[8px] opacity-40">✦</span>
             </span>
           ))}
         </div>
@@ -114,13 +117,17 @@ export default function HomeClient() {
             Building things <span style={{ color: 'var(--accent)' }}>actually</span> matter.
           </h2>
         </div>
+
         <div>
           <p className="text-[0.95rem] leading-7 mb-6 text-paper-mid">
-            I'm a passionate software engineering student with real experience shipping full-stack web and mobile applications. I care about clean code, good architecture, and products people actually enjoy using.
+            I'm a passionate software engineering student with real experience shipping full-stack web and mobile applications.
           </p>
+
           <div className="flex flex-wrap gap-2">
             {skills.map((s) => (
-              <span key={s} className="tech-bubble">{s}</span>
+              <span key={s} className="tech-bubble hover:scale-105 transition-transform duration-200">
+                {s}
+              </span>
             ))}
           </div>
         </div>
@@ -139,29 +146,58 @@ export default function HomeClient() {
 
         <div className="flex flex-col gap-8">
           {projects.map((p) => (
-            <a key={p.num} href={p.link} target="_blank" className="project-row">
-              <span className="p-num font-syne-mono text-sm pt-1">{p.num}</span>
+            <a
+              key={p.num}
+              href={p.link}
+              target="_blank"
+              className="group project-row transition-all duration-300 hover:translate-x-2 hover:border-accent/30"
+            >
+              <span className="p-num font-syne-mono text-sm pt-1 opacity-70 group-hover:opacity-100 transition">
+                {p.num}
+              </span>
+
               <div>
-                <h3 className="font-syne font-bold text-[clamp(1.4rem,3vw,2rem)] mb-2">{p.name}</h3>
-                <p className="text-sm leading-6 mb-3 text-paper-dim">{p.desc}</p>
+                <h3 className="font-syne font-bold text-[clamp(1.4rem,3vw,2rem)] mb-2 group-hover:text-accent transition">
+                  {p.name}
+                </h3>
+
+                <p className="text-sm leading-6 mb-3 text-paper-dim">
+                  {p.desc}
+                </p>
+
                 <div className="flex gap-2 flex-wrap">
                   {p.stack.map((t) => (
-                    <span key={t} className="tech-bubble">{t}</span>
+                    <span
+                      key={t}
+                      className="tech-bubble group-hover:scale-105 transition-transform duration-200"
+                    >
+                      {t}
+                    </span>
                   ))}
                 </div>
               </div>
-              <span className="p-arrow text-xl pt-1 transition-all">↗</span>
+
+              <span className="p-arrow text-xl pt-1 transition-all group-hover:translate-x-1 group-hover:text-accent">
+                ↗
+              </span>
             </a>
           ))}
         </div>
       </section>
 
-      {/* CONTACT CTA */}
-      <section id="contact" className="section-block section-alt flex flex-col md:flex-row justify-between items-center gap-8 mt-16">
+      {/* CONTACT */}
+      <section
+        id="contact"
+        className="section-block section-alt flex flex-col md:flex-row justify-between items-center gap-8 mt-16"
+      >
         <h2 className="font-syne font-extrabold text-[clamp(2rem,5vw,3.5rem)] leading-[1.05]">
           Let's build<br />something.
         </h2>
-        <a href="mailto:nikpajovic@gmail.com" className="btn-primary mt-4 md:mt-0">
+
+        <a
+          href="mailto:nikpajovic@gmail.com"
+          className="btn-primary transition-transform duration-300 hover:scale-105"
+        >
           Send a message ↗
         </a>
       </section>
