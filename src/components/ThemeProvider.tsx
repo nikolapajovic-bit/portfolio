@@ -26,10 +26,16 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
   const toggleDark = (x: number, y: number) => {
     const next = !dark
 
+    // Cast to `any` instead of suppressing a type error inline — whether
+    // startViewTransition exists in the DOM lib types varies by TS version
+    // (present in newer lib.dom.d.ts, absent in older ones), and a directive
+    // comment meant to silence that missing type can itself fail the build
+    // as an "unused directive" on setups where the type IS present.
+    const docAny = document as any
+
     const supportsViewTransitions =
       typeof document !== 'undefined' &&
-      // @ts-expect-error - startViewTransition isn't in every TS DOM lib yet
-      typeof document.startViewTransition === 'function' &&
+      typeof docAny.startViewTransition === 'function' &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!supportsViewTransitions) {
@@ -40,8 +46,7 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.style.setProperty('--theme-x', `${x}px`)
     document.documentElement.style.setProperty('--theme-y', `${y}px`)
 
-    // @ts-expect-error - see above
-    document.startViewTransition(() => {
+    docAny.startViewTransition(() => {
       flushSync(() => setDark(next))
     })
   }
