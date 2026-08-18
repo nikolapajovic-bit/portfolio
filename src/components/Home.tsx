@@ -1,36 +1,34 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 const projects = [
   {
-    num: '01',
     name: 'NextGen eCommerce',
     desc: 'Full-stack eCommerce platform with admin dashboard, CRUD operations, and analytics. Built for real-world scale.',
     stack: ['Next.js', 'Java', 'MySQL'],
     link: 'https://github.com/nikolapajovic-bit/nextgen-frontend',
+    status: 'Repository',
   },
   {
-    num: '02',
     name: 'EcoLiving',
     desc: 'Mobile app for sustainable living — eco tips, carbon footprint calculator, and an interactive recycling map.',
     stack: ['React Native', 'Node.js', 'MongoDB'],
     link: 'https://ecoliving-ecru.vercel.app',
+    status: 'Live',
   },
   {
-    num: '03',
     name: 'CS2 Tournament System',
     desc: 'Live tournament management — brackets, team handling, match scheduling, and a full admin dashboard.',
     stack: ['Next.js', 'Node.js', 'MongoDB'],
     link: 'https://cs2-turnir.vercel.app',
+    status: 'Live',
   },
   {
-    num: '04',
     name: 'MovieVerse',
     desc: 'Cinema ticketing web application for browsing and purchasing movie tickets.',
     stack: ['Angular', 'Angular Material', 'Axios'],
     link: 'https://github.com/nikolapajovic-bit/MovieVerse',
-  }
+    status: 'Repository',
+  },
 ]
 
 const skills = [
@@ -45,87 +43,57 @@ const skills = [
   'REST APIs',
 ]
 
-const tickerItems = [
-  'Next.js',
-  'Node.js',
-  'React Native',
-  'MongoDB',
-  'Java',
-  'MySQL',
-  'Full-Stack',
-  'Mobile Dev',
-  'Angular',
-  'Axios',
-]
-
 export default function HomeClient() {
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
-
   return (
     <>
+      <div className="glow-field">
+        <div className="glow glow-cyan" />
+        <div className="glow glow-purple" />
+      </div>
+
       {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
-        <div className="mb-6">
-          <span className="font-syne-mono text-xs uppercase tracking-widest2 px-3 py-2 border rounded-sm inline-block"
-            style={{ borderColor: 'var(--paper-subtle)', color: 'var(--muted)' }}>
-            Software Engineer
-          </span>
+      <section className="min-h-[90vh] flex flex-col justify-center items-center text-center px-6 relative">
+        <span className="status-pill mb-8">
+          <span className="status-dot" />
+          Open to work
+        </span>
 
-          <span className="ml-4 font-syne-mono text-xs uppercase tracking-widest text-accent inline-flex items-center gap-2">
-            <span className="status-dot w-2 h-2 rounded-full animate-pulse"></span>
-            Open to work
-          </span>
-        </div>
-
-        <h1 className="font-syne font-extrabold text-[clamp(5rem,13vw,10rem)] leading-[0.9]">
-          <span className="block animate-gradient-x">NIKOLA</span>
-          <span className="block text-outline">PAJOVIĆ</span>
+        <h1 className="font-syne font-extrabold text-[clamp(2.8rem,8vw,6.5rem)] leading-none">
+          Nikola Pajović —<br />
+          <span className="text-grad">full-stack engineer.</span>
         </h1>
 
-        <p className="mt-8 text-[1rem] max-w-xl text-paper-mid">
+        <p className="mt-7 text-[1.1rem] max-w-xl text-paper-mid font-light">
           4th year Software Engineering student. I build things that live on the web and in your pocket.
         </p>
 
-        <a
-          href="mailto:nikpajovic@gmail.com"
-          className="btn-primary mt-6 inline-block transition-transform duration-300 hover:scale-105"
-        >
-          Get in touch ↗
-        </a>
+        <div className="mt-10 flex gap-4 flex-wrap justify-center">
+          <a href="mailto:nikpajovic@gmail.com" className="btn-primary">
+            Get in touch →
+          </a>
+          <a href="#projects" className="btn-ghost">
+            See the work
+          </a>
+        </div>
       </section>
 
-      {/* TECH TICKER */}
-      <div className="overflow-hidden py-3 border-t border-b border-border">
-        <div className="ticker-inner whitespace-nowrap flex gap-10 animate-[marquee_18s_linear_infinite]">
-          {[...tickerItems, ...tickerItems].map((item, i) => (
-            <span
-              key={i}
-              className="font-syne-mono text-xs uppercase tracking-widest4 px-6 inline-flex items-center text-paper-dim"
-            >
-              {item} <span className="ml-4 text-[8px] opacity-40">✦</span>
-            </span>
-          ))}
-        </div>
-      </div>
+      {/* ABOUT */}
+      <section id="about" className="section-block">
+        <span className="section-label">// About</span>
+        <h2 className="font-syne font-bold text-[clamp(2rem,4.2vw,3rem)] leading-[1.1] mt-2 mb-10">
+          Real products, <span className="text-grad">shipped and running.</span>
+        </h2>
 
-      {/* ABOUT / SKILLS */}
-      <section id="about" className="section-block grid md:grid-cols-2 gap-16 items-start">
-        <div>
-          <span className="section-label">About me</span>
-          <h2 className="font-syne font-bold text-[clamp(2rem,4vw,3rem)] leading-[1.1] mt-2">
-            Building things <span style={{ color: 'var(--accent)' }}>actually</span> matter.
-          </h2>
-        </div>
-
-        <div>
-          <p className="text-[0.95rem] leading-7 mb-6 text-paper-mid">
-            I'm a passionate software engineering student with real experience shipping full-stack web and mobile applications.
+        <div className="glass-panel grid md:grid-cols-2 gap-14 items-start">
+          <p className="text-[1.02rem] leading-7 text-paper-mid font-light">
+            I&apos;m a passionate software engineering student with real experience shipping
+            full-stack web and mobile applications — from e-commerce platforms with admin
+            dashboards to live tournament management systems used by real players.
           </p>
 
           <div className="flex flex-wrap gap-2">
             {skills.map((s) => (
-              <span key={s} className="tech-bubble hover:scale-105 transition-transform duration-200">
+              <span key={s} className="tech-bubble">
                 {s}
               </span>
             ))}
@@ -135,71 +103,50 @@ export default function HomeClient() {
 
       {/* PROJECTS */}
       <section id="projects" className="section-block">
-        <div className="flex justify-between items-baseline mb-12 border-t border-border pt-6">
-          <h2 className="font-syne font-extrabold text-[clamp(2.5rem,6vw,5rem)] leading-none">
-            Selected Work
-          </h2>
-          <span className="font-syne-mono text-xs uppercase tracking-widest text-paper-dim">
-            0{projects.length} projects
-          </span>
+        <div className="flex justify-between items-baseline mb-10 border-t border-border pt-8">
+          <div>
+            <span className="section-label">// Selected work</span>
+            <h2 className="font-syne font-extrabold text-[clamp(2rem,4.5vw,3.2rem)] leading-none mt-2">
+              Projects worth a look.
+            </h2>
+          </div>
+          <span className="section-label whitespace-nowrap">{projects.length} projects</span>
         </div>
 
-        <div className="flex flex-col gap-8">
+        <div className="grid md:grid-cols-2 gap-5">
           {projects.map((p) => (
-            <a
-              key={p.num}
-              href={p.link}
-              target="_blank"
-              className="group project-row transition-all duration-300 hover:translate-x-2 hover:border-accent/30"
-            >
-              <span className="p-num font-syne-mono text-sm pt-1 opacity-70 group-hover:opacity-100 transition">
-                {p.num}
-              </span>
-
-              <div>
-                <h3 className="font-syne font-bold text-[clamp(1.4rem,3vw,2rem)] mb-2 group-hover:text-accent transition">
-                  {p.name}
-                </h3>
-
-                <p className="text-sm leading-6 mb-3 text-paper-dim">
-                  {p.desc}
-                </p>
-
-                <div className="flex gap-2 flex-wrap">
-                  {p.stack.map((t) => (
-                    <span
-                      key={t}
-                      className="tech-bubble group-hover:scale-105 transition-transform duration-200"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+            <a key={p.name} href={p.link} target="_blank" className="proj-card">
+              <div className="proj-top">
+                <span className="proj-tag">{p.status}</span>
+                <span className="proj-arrow">↗</span>
               </div>
 
-              <span className="p-arrow text-xl pt-1 transition-all group-hover:translate-x-1 group-hover:text-accent">
-                ↗
-              </span>
+              <h3 className="proj-name">{p.name}</h3>
+              <p className="proj-desc">{p.desc}</p>
+
+              <div className="stack-row">
+                {p.stack.map((t) => (
+                  <span key={t} className="stack-chip">
+                    {t}
+                  </span>
+                ))}
+              </div>
             </a>
           ))}
         </div>
       </section>
 
       {/* CONTACT */}
-      <section
-        id="contact"
-        className="section-block section-alt flex flex-col md:flex-row justify-between items-center gap-8 mt-16"
-      >
-        <h2 className="font-syne font-extrabold text-[clamp(2rem,5vw,3.5rem)] leading-[1.05]">
-          Let's build<br />something.
-        </h2>
-
-        <a
-          href="mailto:nikpajovic@gmail.com"
-          className="btn-primary transition-transform duration-300 hover:scale-105"
-        >
-          Send a message ↗
-        </a>
+      <section id="contact" className="section-block">
+        <div className="contact-panel">
+          <span className="section-label">// Get in touch</span>
+          <h2 className="font-syne font-extrabold text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] mt-3 mb-9">
+            Let&apos;s build <span className="text-grad">something.</span>
+          </h2>
+          <a href="mailto:nikpajovic@gmail.com" className="btn-primary">
+            Send a message →
+          </a>
+        </div>
       </section>
     </>
   )

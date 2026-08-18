@@ -2,6 +2,7 @@
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
+import Logo from './Logo'
 
 export default function Footer() {
   const links = [
@@ -32,9 +33,7 @@ export default function Footer() {
         
         {/* Logo / Brand */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
-          <span className="font-syne font-extrabold text-xl tracking-tight">
-            NP<span style={{ color: 'var(--accent)' }}>.</span>
-          </span>
+          <Logo size={34} />
 
           <span className="text-xs text-muted uppercase tracking-widest2">
             Software Engineer · {new Date().getFullYear()}
@@ -53,9 +52,9 @@ export default function Footer() {
               href={l.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-xs uppercase tracking-widest3 text-paper-dim transition-colors duration-200 hover:text-accent px-3 py-1.5 rounded-md hover:bg-accent/10"
+              className="group flex items-center gap-2 text-xs uppercase tracking-widest3 text-paper-dim transition-colors duration-200 hover:text-accent px-3 py-1.5 rounded-md hover:bg-accent-10"
             >
-              <span className="text-accent/80 group-hover:text-accent transition">
+              <span className="text-accent-80 group-hover:text-accent transition">
                 {l.icon}
               </span>
 

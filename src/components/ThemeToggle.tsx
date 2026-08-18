@@ -1,42 +1,60 @@
 'use client'
 
+import { LuSun, LuMoon } from 'react-icons/lu'
+
 interface ThemeToggleProps {
   dark: boolean
-  setDark: (v: boolean) => void
+  onToggle: (x: number, y: number) => void
 }
 
-const SunIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="5" />
-    <line x1="12" y1="1" x2="12" y2="3" />
-    <line x1="12" y1="21" x2="12" y2="23" />
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-    <line x1="1" y1="12" x2="3" y2="12" />
-    <line x1="21" y1="12" x2="23" y2="12" />
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-  </svg>
-)
+export default function ThemeToggle({ dark, onToggle }: ThemeToggleProps) {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = rect.left + rect.width / 2
+    const y = rect.top + rect.height / 2
+    onToggle(x, y)
+  }
 
-const MoonIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-  </svg>
-)
-
-export default function ThemeToggle({ dark, setDark }: ThemeToggleProps) {
   return (
     <button
-      onClick={() => setDark(!dark)}
-      className="flex items-center gap-1.5 font-syne-mono text-[10px] uppercase tracking-widest3 px-3 py-1.5 rounded-sm border bg-transparent cursor-pointer transition-[color,border-color] duration-150 hover:text-(--accent) hover:border-(--accent)"
+      onClick={handleClick}
+      role="switch"
+      aria-checked={dark}
+      aria-label="Toggle theme"
+      className="relative w-14.5 h-7.5 rounded-full border cursor-pointer transition-colors duration-300 shrink-0"
       style={{
-        color: "var(--paper-dim)",
-        borderColor: "var(--paper-subtle)",
-        lineHeight: 1,
+        borderColor: 'var(--border)',
+        background: 'var(--glass)',
+        backdropFilter: 'blur(12px)',
       }}
     >
-      {dark ? <><SunIcon /> Light</> : <><MoonIcon /> Dark</>}
+      {/* faint icon watermarks in the track */}
+      <LuSun
+        size={12}
+        className="absolute left-1.75 top-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-300"
+        style={{ color: 'var(--muted)', opacity: dark ? 0 : 1 }}
+      />
+      <LuMoon
+        size={12}
+        className="absolute right-1.75 top-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-300"
+        style={{ color: 'var(--muted)', opacity: dark ? 1 : 0 }}
+      />
+
+      {/* sliding glow thumb */}
+      <span
+        className="absolute top-0.5 left-0.5 w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 ease-out"
+        style={{
+          transform: dark ? 'translateX(1.75rem)' : 'translateX(0)',
+          background: 'linear-gradient(100deg, var(--accent), var(--accent-2))',
+          boxShadow: '0 0 12px var(--accent-10)',
+        }}
+      >
+        {dark ? (
+          <LuMoon size={12} style={{ color: 'var(--ink)' }} />
+        ) : (
+          <LuSun size={12} style={{ color: 'var(--ink)' }} />
+        )}
+      </span>
     </button>
   )
 }

@@ -15,8 +15,8 @@ module.exports = {
       },
       colors: {
         accent: {
-          DEFAULT: "#c8ff00",
-          dark: "#1a5cff",
+          DEFAULT: "#4cf3ff",
+          dark: "#b45cff",
         },
       },
       fontSize: {
