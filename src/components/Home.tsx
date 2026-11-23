@@ -29,6 +29,13 @@ const projects = [
     link: 'https://github.com/nikolapajovic-bit/MovieVerse',
     status: 'Repository',
   },
+  {
+    name: 'CreatorOS',
+    desc: 'Web platform for content creators to manage their work, track analytics, manage brand deals and contracts.',
+    stack: ['Next.js', 'Node.js', 'MongoDB'],
+    link: 'https://creatoros-front.vercel.app',
+    status: 'Live',
+  }
 ]
 
 const skills = [
