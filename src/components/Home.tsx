@@ -35,6 +35,13 @@ const projects = [
     stack: ['Next.js', 'Node.js', 'MongoDB'],
     link: 'https://creatoros-front.vercel.app',
     status: 'Live',
+  },
+  {
+    name: 'ETA Tech',
+    desc: 'A website for a tech company, showcasing their services, service areas, prices, and contact information.',
+    stack: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
+    link: 'https://etatech.rs',
+    status: 'Live',
   }
 ]
 
@@ -66,8 +73,8 @@ export default function HomeClient() {
         </span>
 
         <h1 className="font-syne font-extrabold text-[clamp(2.8rem,8vw,6.5rem)] leading-none">
-          Nikola Pajović —<br />
-          <span className="text-grad">full-stack engineer.</span>
+          Nikola Pajović<br />
+          <span className="text-grad">full-stack engineer</span>
         </h1>
 
         <p className="mt-7 text-[1.1rem] max-w-xl text-paper-mid font-light">
